@@ -2,9 +2,9 @@
 
 ## Topics
 
-1. Assignment 1 questions - searching for imports and deploying on the web
-2. Helpful tips - searching for imports, using the console log
-3. Importing 3D models (obj and glb)
+1. Assignment 1 questions - searching for imports, deploying on the web, 
+2. Helpful tips - searching for imports, using the console log, debugging over the web
+3. Importing 3D models 
 4. Converting 3D models
 5. Exporting scene from Unity
 6. Including your assets in the build
