@@ -1,17 +1,16 @@
-/* CSCI 5619 Lecture 4, Fall 2020
+/* CSCI 5619 Assignment 1, Fall 2020
  * Author: Evan Suma Rosenberg
  * License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
  */ 
 
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
-import { Color3, Vector3 } from "@babylonjs/core/Maths/math";
+import { Vector3, Color3 } from "@babylonjs/core/Maths/math";
 import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
-import { DirectionalLight } from "@babylonjs/core/Lights/directionalLight"
+import { DirectionalLight } from "@babylonjs/core/Lights/directionalLight" 
 import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader"
 import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial"
-import { TransformNode } from "@babylonjs/core/Meshes/transformNode"
 
 // Required to populate the Create methods on the mesh class. 
 // Without this, the bundle would be smaller,
@@ -19,10 +18,11 @@ import { TransformNode } from "@babylonjs/core/Meshes/transformNode"
 //import {MeshBuilder} from  "@babylonjs/core/Meshes/meshBuilder";
 
 // side effects
-import "@babylonjs/core/Materials/standardMaterial"
 import "@babylonjs/core/Loading/loadingScreen"
+import "@babylonjs/core/Materials/standardMaterial"
 import "@babylonjs/loaders/OBJ/objFileLoader"
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
+//import "@babylonjs/core/Loading/Plugins/babylonFileLoader"
 
 // Import debug layer
 import "@babylonjs/inspector"
@@ -37,10 +37,10 @@ class Game
         var scene = new Scene(engine);
 
         // This creates and positions a first-person camera (non-mesh)
-        var camera = new UniversalCamera("camera1", new Vector3(0, 1.7, 0), scene);
+        var camera = new UniversalCamera("camera1", new Vector3(0, 5, -10), scene);
 
         // This targets the camera to scene origin
-        camera.setTarget(new Vector3(0, 1.7, 1));
+        camera.setTarget(Vector3.Zero());
 
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
@@ -52,23 +52,22 @@ class Game
         var directionalLight = new DirectionalLight("sunlight", new Vector3(0, -1, 0), scene);
         directionalLight.intensity = 1.0;
 
-        var root = new TransformNode("root", scene);
-
-        SceneLoader.ImportMesh("", "assets/models/", "dragonite.obj", scene, (meshes) => { 
+        SceneLoader.ImportMesh("", "assets/models/", "dragonite.obj", scene, (meshes) => {
             meshes[0].name = "dragonite";
-            meshes[0].position = new Vector3(0, 0, 10);
-            meshes[0].rotation = new Vector3(0, 180 * Math.PI / 180, 0);
-            meshes[0].scaling = new Vector3(10, 10, 10)
-            meshes[0].setParent(root);
+            meshes[0].scaling = new Vector3(10, 10, 10);
+            meshes[0].rotation = new Vector3(0, Math.PI, 0);
 
             var dragoniteMaterial = <StandardMaterial>meshes[0].material;
-            dragoniteMaterial.emissiveColor = new Color3(1, 1, 1);
-       });
+            dragoniteMaterial.emissiveColor = new Color3(1, 1, 1);  
+        });
 
-        SceneLoader.ImportMesh("", "assets/models/", "world.glb", scene, (meshes) => { 
-            meshes[0].name = "world"
+        SceneLoader.ImportMesh("", "assets/models/", "world.glb", scene, (meshes) => {
+            meshes[0].name = "world";
             meshes[0].position = new Vector3(-75, -22, -50);
-            meshes[0].setParent(root);
+
+            meshes.forEach((mesh) => {
+                console.log("loaded mesh: " + mesh.name);
+            })
         });
 
         scene.debugLayer.show();

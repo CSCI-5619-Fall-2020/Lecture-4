@@ -11,7 +11,7 @@
 
 ## Participation Exercise
 
-Modify the existing scene by moving at least three mesh objects loaded in `world.glb`.  To do this, you should use the debug inspector to find the node names and determine new position/rotation/scale values to use in your code.
+Modify the existing scene by moving at least three mesh objects loaded in `world.glb`.  To do this, you should use the debug inspector to find the node names and determine new position/rotation/scale values to use in your code.  You should submit the modified `index.ts` file on Canvas (do not include any other files).
 
 ## License
 
