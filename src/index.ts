@@ -5,15 +5,28 @@
 
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
-import { Vector3 } from "@babylonjs/core/Maths/math";
+import { Color3, Vector3 } from "@babylonjs/core/Maths/math";
 import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera";
 import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
+import { DirectionalLight } from "@babylonjs/core/Lights/directionalLight"
+import { SceneLoader } from "@babylonjs/core/Loading/sceneLoader"
+import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial"
+import { TransformNode } from "@babylonjs/core/Meshes/transformNode"
 
 // Required to populate the Create methods on the mesh class. 
 // Without this, the bundle would be smaller,
 // but the createXXX methods from mesh would not be accessible.
-import {MeshBuilder} from  "@babylonjs/core/Meshes/meshBuilder";
+//import {MeshBuilder} from  "@babylonjs/core/Meshes/meshBuilder";
+
+// side effects
 import "@babylonjs/core/Materials/standardMaterial"
+import "@babylonjs/core/Loading/loadingScreen"
+import "@babylonjs/loaders/OBJ/objFileLoader"
+import "@babylonjs/loaders/glTF/2.0/glTFLoader"
+
+// Import debug layer
+import "@babylonjs/inspector"
+
 
 /******* Add the Game class with a static CreateScene function ******/
 class Game 
@@ -24,28 +37,41 @@ class Game
         var scene = new Scene(engine);
 
         // This creates and positions a first-person camera (non-mesh)
-        var camera = new UniversalCamera("camera1", new Vector3(0, 5, -10), scene);
+        var camera = new UniversalCamera("camera1", new Vector3(0, 1.7, 0), scene);
 
         // This targets the camera to scene origin
-        camera.setTarget(Vector3.Zero());
+        camera.setTarget(new Vector3(0, 1.7, 1));
 
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
 
-        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-        var light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+        var ambientlight = new HemisphericLight("ambient", new Vector3(0, 1, 0), scene);
+        ambientlight.intensity = 1.0;
+        ambientlight.diffuse = new Color3(.25, .25, .25);
 
-        // Default intensity is 1. Let's dim the light a small amount
-        light.intensity = 0.7;
+        var directionalLight = new DirectionalLight("sunlight", new Vector3(0, -1, 0), scene);
+        directionalLight.intensity = 1.0;
 
-        // Our built-in 'sphere' shape.
-        var sphere = MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
+        var root = new TransformNode("root", scene);
 
-        // Move the sphere upward 1/2 its height
-        sphere.position.y = 1;
+        SceneLoader.ImportMesh("", "assets/models/", "dragonite.obj", scene, (meshes) => { 
+            meshes[0].name = "dragonite";
+            meshes[0].position = new Vector3(0, 0, 10);
+            meshes[0].rotation = new Vector3(0, 180 * Math.PI / 180, 0);
+            meshes[0].scaling = new Vector3(10, 10, 10)
+            meshes[0].setParent(root);
 
-        // Our built-in 'ground' shape.
-        var ground = MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
+            var dragoniteMaterial = <StandardMaterial>meshes[0].material;
+            dragoniteMaterial.emissiveColor = new Color3(1, 1, 1);
+       });
+
+        SceneLoader.ImportMesh("", "assets/models/", "world.glb", scene, (meshes) => { 
+            meshes[0].name = "world"
+            meshes[0].position = new Vector3(-75, -22, -50);
+            meshes[0].setParent(root);
+        });
+
+        scene.debugLayer.show();
 
         return scene;
     }

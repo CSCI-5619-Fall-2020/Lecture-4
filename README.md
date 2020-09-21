@@ -2,16 +2,16 @@
 
 ## Topics
 
-1. Assignment 1 questions - searching for imports, deploying on the web, 
-2. Helpful tips - searching for imports, using the console log, debugging over the web
-3. Importing 3D models 
-4. Converting 3D models
-5. Exporting scene from Unity
-6. Including your assets in the build
+1. Helpful tips
+   - Searching for imports
+   - Using the console log
+2. Importing and converting 3D models 
+3. Exporting scene assets from Unity
+4. Automated deployment to the web
 
 ## Participation Exercise
 
-Take template scene and remix
+Modify the existing scene by moving at least three mesh objects loaded in `world.glb`.  To do this, you should use the debug inspector to find the node names and determine new position/rotation/scale values to use in your code.
 
 ## License
 
@@ -23,4 +23,6 @@ The intent of choosing CC BY-NC-SA 4.0 is to allow individuals and instructors a
 
 This lecture was based upon content from the [3D User Interfaces Fall 2020](https://github.blairmacintyre.me/3dui-class-f20) course by Blair MacIntyre.
 
-Source for the UnityGLTF library can be found at: https://github.com/KhronosGroup/UnityGLTF
+Source code for the UnityGLTF library can be found at: https://github.com/KhronosGroup/UnityGLTF
+
+This lecture used the [Dragonite 3D model](https://clara.io/view/5cf54194-6b42-4d1e-bfc3-4fff1f89287c#) from Clara.io and [RPG Poly Pack - Lite](https://assetstore.unity.com/packages/3d/environments/landscapes/rpg-poly-pack-lite-148410) from the Unity Asset Store.
