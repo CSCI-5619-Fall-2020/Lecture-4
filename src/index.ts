@@ -18,7 +18,6 @@ import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial"
 //import {MeshBuilder} from  "@babylonjs/core/Meshes/meshBuilder";
 
 // side effects
-import "@babylonjs/core/Loading/loadingScreen"
 import "@babylonjs/core/Materials/standardMaterial"
 import "@babylonjs/loaders/OBJ/objFileLoader"
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
