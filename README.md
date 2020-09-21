@@ -6,8 +6,11 @@
    - Searching for imports
    - Using the console log
 2. Importing and converting 3D models 
+   - [Dragonite 3D model](https://clara.io/view/5cf54194-6b42-4d1e-bfc3-4fff1f89287c#) from Clara.io
 3. Exporting scene assets from Unity
+   - [RPG Poly Pack - Lite](https://assetstore.unity.com/packages/3d/environments/landscapes/rpg-poly-pack-lite-148410) from the Unity Asset Store
 4. Automated deployment to the web
+   - Note that you will need to modify the `deploy.sh` script with your information before it will work.
 
 ## Participation Exercise
 
@@ -24,5 +27,3 @@ The intent of choosing CC BY-NC-SA 4.0 is to allow individuals and instructors a
 This lecture was based upon content from the [3D User Interfaces Fall 2020](https://github.blairmacintyre.me/3dui-class-f20) course by Blair MacIntyre.
 
 Source code for the UnityGLTF library can be found at: https://github.com/KhronosGroup/UnityGLTF
-
-This lecture used the [Dragonite 3D model](https://clara.io/view/5cf54194-6b42-4d1e-bfc3-4fff1f89287c#) from Clara.io and [RPG Poly Pack - Lite](https://assetstore.unity.com/packages/3d/environments/landscapes/rpg-poly-pack-lite-148410) from the Unity Asset Store.
