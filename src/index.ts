@@ -1,4 +1,4 @@
-/* CSCI 5619 Assignment 1, Fall 2020
+/* CSCI 5619 Lecture 4, Fall 2020
  * Author: Evan Suma Rosenberg
  * License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
  */ 
