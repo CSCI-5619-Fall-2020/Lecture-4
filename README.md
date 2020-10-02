@@ -1,5 +1,7 @@
 # Lecture 4: Creating Virtual Environments
 
+Detailed explanation of this code can be found in the lecture [video](https://mediaspace.umn.edu/media/1_zlzfxsfh).
+
 ## Topics
 
 1. Helpful tips
